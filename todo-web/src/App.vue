@@ -1,17 +1,33 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<template>  
+  
+  <div>
+    <TabMenu :model="items"></TabMenu>
+    <router-view></router-view>
+    
+   <!-- <ListaPage></ListaPage> -->
+    
+  </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import ListaPage from "./components/Lista/Lista-page.vue";
+import TabMenu from 'primevue/tabmenu'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+
+export default{
+    components: {
+    TabMenu
+  },
+  data() {
+    return {
+      items: [
+        {label: 'Home', icon: 'pi pi-fw pi-home', to:'/'},
+        {label: 'Todo register', icon: 'pi pi-plus', to:'/cadastro'},
+        {label: 'Todo List', icon: 'pi pi-list', to:'/list'}
+      ]
+    }
+  },
 }
+
 </script>
 
 <style>
