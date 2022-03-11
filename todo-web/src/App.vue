@@ -3,13 +3,11 @@
   <div>
     <TabMenu :model="items"></TabMenu>
     <router-view></router-view>
-    
-   <!-- <ListaPage></ListaPage> -->
+
     
   </div>
 </template>
 <script>
-//import ListaPage from "./components/Lista/Lista-page.vue";
 import TabMenu from 'primevue/tabmenu'
 
 
