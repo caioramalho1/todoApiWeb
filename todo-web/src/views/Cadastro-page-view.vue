@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         <Toast></Toast>
-        <form @submit.prevent="gravar()" >
+        <form class="formulario" @submit.prevent="gravar()" >
             <span class="p-float-label">
                 <InputText id="inputTodo" type="text" v-model="valor"></InputText>
                 <Button type="submit" label="Submit" icon="pi pi-check" iconPos="right" />
@@ -51,6 +51,8 @@ export default {
     // },
 }
 </script>
-<style lang="">
-    
+<style>
+.formulario {
+    padding-top: 5rem;
+}
 </style>

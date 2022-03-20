@@ -17,7 +17,8 @@
              </span> 
              </td>
             <ConfirmPopup></ConfirmPopup>
-            <td><Button @click="deletar($event)" label="Delete" icon="pi pi-trash"></Button></td>
+            <Toast></Toast>
+            <td><Button style="background: #db5a5a;" @click="deletar($event, todo.id)" label="Delete" icon="pi pi-trash"></Button></td>
         </tr>
         </tbody>
         </table>
@@ -28,11 +29,13 @@ import axios from "axios"
 import Button from 'primevue/button';
 import ConfirmPopup from 'primevue/confirmpopup';
 import Checkbox from 'primevue/checkbox';
+import Toast from "primevue/toast";
 export default {
     components: {
         Button,
         ConfirmPopup,
-        Checkbox
+        Checkbox,
+        Toast
     },
     data() {
         return {
@@ -46,18 +49,25 @@ export default {
     .catch(e => this.erros = e)
     },
     methods: {
-        deletar(event){
+        deletar(event, id){
             this.$confirm.require({
                 target: event.currentTarget,
                 message: 'Are you sure you want to DELETE this Todo ?',
                 icon: 'pi pi-exclamation-triangle',
                 accept: () => {
-                    //implementar a callback para executar quando confirmar a ação
-                    alert('Confirmado')
+                    this.$toast.add({severity:'info', summary:'Confirmed', detail:'Record deleted', life: 3000});
+
+                    axios.delete(`https://localhost:7282/api/todoitems/${id}`)
+                    .then(() => {
+                        let indice = this.todos.indexOf(id);
+                        this.todos.splice(indice, 1);
+                    });
+                    //1º Parametro => A partir de qual elemento vou começar alterar o arr
+                    //2º Parametro => DeleteCount => Quantos elementos vou deletar a partir do indice
                 },
                 reject: () => {
-                    alert('Recusado')
-                    //implementar a callback para executar quando rejeitar a ação
+                    this.$toast.add({severity:'error', summary:'Rejected', detail:'You have rejected', life: 3000});
+
                 }
             });
         },
@@ -70,7 +80,14 @@ export default {
                     isComplete: true
                 })
             }
-            console.log(`https://localhost:7282/api/todoitems/${id}`)
+            else{
+                await axios.put(`https://localhost:7282/api/todoitems/${id}`, {
+                    id: id,
+                    name: todo.name,
+                    isComplete: false
+                })
+            }
+            
         }
     },
 }
