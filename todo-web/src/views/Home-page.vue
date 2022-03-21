@@ -18,36 +18,8 @@ export default {
     data() {
         return {
             itens: [
-                {
-                    id: 1,
-                    nome: 'Nome 1',
-                    id_pai: null
-                },
-                {
-                    id: 2,
-                    nome: 'Nome 2',
-                    id_pai: null
-                },
-                {
-                    id: 3,
-                    nome: 'Nome 3',
-                    id_pai: 1
-                },
-                {
-                    id: 4,
-                    nome: 'Nome 4',
-                    id_pai: 2
-                },
-                {
-                    id: 5,
-                    nome: 'Nome 5',
-                    id_pai: 1
-                },
-                {
-                    id: 6,
-                    nome: 'Nome 6',
-                    id_pai: 2
-                }
+
+               
             ],
             itemSelecionado: ''
         }
@@ -64,8 +36,45 @@ export default {
         },
     },
     created() {
-        this.itemSelecionado = this.itens[0].id
+        
+        this.itens.push(
+            {
+            id: 1,
+            nome: 'Nome 1',
+            id_pai: null
+            },
+            {
+            id: 2,
+            nome: 'Nome 2',
+            id_pai: null
+            },
+            {
+            id: 3,
+            nome: 'Nome 3',
+            id_pai: 1
+            },
+            {
+            id: 4,
+            nome: 'Nome 4',
+            id_pai: 2
+            },
+            {
+            id: 5,
+            nome: 'Nome 5',
+            id_pai: 1
+            },
+            {
+            id: 6,
+            nome: 'Nome 6',
+            id_pai: 2
+            }
+        )
+    
+    this.itemSelecionado = this.itens[0].id;
     },
+    // mounted() {
+    //     this.itemSelecionado = this.itens[0].id;
+    // },
 }
 </script>
 <style lang="">
