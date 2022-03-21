@@ -49,7 +49,7 @@ export default {
                     id_pai: 2
                 }
             ],
-            
+            itemSelecionado: ''
         }
     },
     computed: {
@@ -62,10 +62,10 @@ export default {
         itensFiltrados(){
             return this.itens.filter( (x) => x.id_pai == this.itemSelecionado)
         },
-        itemSelecionado(){
-            return this.itens[1].id
-        }
-    }
+    },
+    created() {
+        this.itemSelecionado = this.itens[0].id
+    },
 }
 </script>
 <style lang="">
